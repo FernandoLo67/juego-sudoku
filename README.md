@@ -94,7 +94,19 @@ Con maximo 2 alcanza para saber si es unica, y evita explorar el arbol entero de
 
 **Las pistas se cuentan solo cuando sirven de algo.** Una pista sobre un tablero terminado no incrementa el contador.
 
-## Las 49 pruebas
+## Estadisticas y puntuacion
+
+`Estadisticas` registra cada partida: movimientos, errores, pistas usadas y tiempo. El puntaje parte de 1000 puntos base con penalizaciones:
+
+- **-50** por cada error
+- **-100** por cada pista usada
+- **-1 por segundo** extra despues del primer minuto
+
+Un multiplicador por dificultad escala el resultado: FACIL x1, MEDIO x1.5, DIFICIL x2. Una partida perfecta en DIFICIL vale 2000 puntos; una partida con 5 errores, 3 pistas y dos minutos en FACIL queda en 590.
+
+El puntaje nunca baja de cero — no tiene sentido que un juego castigue con numeros negativos.
+
+## Las 59 pruebas
 
 **`PartidaTest` (14)**
 
@@ -119,13 +131,15 @@ src/main/java/com/fernando/sudoku/
 ├── SolucionadorSudoku.java       Backtracking; cuenta soluciones con tope.
 ├── GeneradorSudoku.java          Cuadricula completa y vaciado con solucion unica.
 ├── Partida.java                  Tablero + solucion: errores, resolubilidad y pistas.
+├── Estadisticas.java             Movimientos, errores, pistas, tiempo y puntaje.
 ├── JugadaInvalidaException.java
 └── Main.java                     Solo lee del teclado y escribe en pantalla.
 src/test/java/com/fernando/sudoku/
 ├── PartidaTest.java            14 pruebas.
 ├── TableroTest.java            15 pruebas.
 ├── SolucionadorSudokuTest.java 11 pruebas.
-└── GeneradorSudokuTest.java     9 pruebas.
+├── GeneradorSudokuTest.java     9 pruebas.
+└── EstadisticasTest.java       10 pruebas.
 ```
 
 ## Como ejecutar
